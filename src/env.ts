@@ -49,7 +49,7 @@ const envSchema = z.object({
     .enum(['true', 'false'])
     .optional()
     .transform((val) => val === 'true')
-    .default('true'),
+    .default(true),
   SMTP_USER: z.string().transform(val => val === '' ? undefined : val).optional(),
   SMTP_PASS: z.string().transform(val => val === '' ? undefined : val).optional(),
 
