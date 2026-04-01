@@ -19,34 +19,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  // Extract unique tag pages from posts
-  const tagSlugs = new Set<string>();
-  posts.forEach((post) => {
-    post.tags?.forEach((tag) => {
-      if (tag.slug) {
-        tagSlugs.add(tag.slug);
-      } else if (tag.name) {
-        // Convert tag name to slug format
-        const slugified = tag.name
-          .toLowerCase()
-          .replace(/[^\w\s-]/g, '')
-          .replace(/\s+/g, '-')
-          .replace(/-+/g, '-')
-          .trim();
-        if (slugified) {
-          tagSlugs.add(slugified);
-        }
-      }
-    });
-  });
-
-  // Tag pages without lastModified (no specific date)
-  const tagPages = Array.from(tagSlugs).map((slug) => ({
-    url: `${baseUrl}/blog/tag/${slug}`,
-    changeFrequency: "weekly" as const,
-    priority: 0.6,
-  }));
-
   // Static pages without lastModified (no specific date)
   const staticPages = [
     {
@@ -69,7 +41,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...staticPages,
     ...blogPosts,
-    ...tagPages,
   ];
 }
 
@@ -78,12 +49,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 1. Define the base URL from site configuration.
 2. Fetch the latest 100 blog posts from Hashnode using getBlogPosts.
 3. Map blog posts to sitemap entries with Hashnode publishedAt as lastModified date.
-4. Extract unique tag pages (without lastModified since they change dynamically).
-5. Define static pages (without lastModified since they don't have specific meaningful dates).
-6. Combine all entries into a single sitemap array and return it.
+4. Define static pages with their respective sitemap entries.
+5. Combine static pages and blog posts into sitemap array (tag pages excluded).
 
 Date Strategy:
 - Blog posts: Use Hashnode publishedAt timestamp
-- Tag pages: Omit lastModified (dynamic content date)
 - Static pages: Omit lastModified (no meaningful date for these pages)
+- Tag pages: Excluded from sitemap to reduce crawl depth
 */
