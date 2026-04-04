@@ -23,6 +23,11 @@
 # production
 /build
 
+# generated files
+/src/generated/
+/public/images/generated/
+*.min.js
+
 # misc
 .DS_Store
 *.pem

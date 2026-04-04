@@ -1,0 +1,7 @@
+{
+  "images": [],
+  "output": {
+    "dataFile": "src/generated/lqip/lqip-data.json",
+    "generatedImagesDir": "public/images/generated"
+  }
+}

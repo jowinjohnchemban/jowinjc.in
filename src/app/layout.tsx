@@ -115,7 +115,7 @@ export default function RootLayout({
         {/* Preload critical hero image for faster LCP */}
         <link
           rel="preload"
-          href="/profile.jpg"
+          href="/images/profile.jpg"
           as="image"
           type="image/jpeg"
           fetchPriority="high"

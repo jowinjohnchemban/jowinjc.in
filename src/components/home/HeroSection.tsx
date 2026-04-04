@@ -49,7 +49,7 @@ export function HeroSection({ blurDataURL }: { blurDataURL?: string } = {}) {
         style={{ opacity: 0.2, transform: 'translateY(10px)' }}
       >
         <Image
-          src="/profile.jpg"
+          src="/images/profile.jpg"
           alt="Jowin John Chemban"
           width={300}
           height={300}

@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ContactSection, HeroSection, LatestBlogSection } from "@/components/home";
 import { getBlogPosts } from "@/lib/api/hashnode";
+import { getProfileLQIP } from "@/lib/lqip";
 import { generatePageSEO } from "@/config/seo";
 import { siteConfig } from "@/config/site";
 import type { Metadata } from "next";
@@ -43,8 +44,8 @@ export default async function Home() {
   // Fetch blog posts on the server with caching
   const latestPosts = await getBlogPosts(3);
 
-  // Skip blur placeholder generation for faster initial load
-  const heroBlurDataURL = undefined; // Remove expensive blur generation
+  // Get pre-generated LQIP blur data for hero image
+  const heroBlurDataURL = getProfileLQIP();
 
   return (
     <>
