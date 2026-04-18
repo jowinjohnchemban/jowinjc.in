@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import styles from './TypewriterText.module.css';
 
 interface TypewriterTextProps {
   words: string[];
@@ -24,6 +25,11 @@ export function TypewriterText({
   const [isDeleting, setIsDeleting] = useState(false);
   const [isWaiting, setIsWaiting] = useState(false);
 
+  // Random speed variation for more realistic typing
+  const getRandomSpeed = (baseSpeed: number) => {
+    return baseSpeed + Math.random() * 30 - 15; // ±15ms variation
+  };
+
   useEffect(() => {
     const currentWord = words[wordIndex];
     let timeout: NodeJS.Timeout;
@@ -38,21 +44,21 @@ export function TypewriterText({
         timeout = setTimeout(() => {
           setWordIndex((prev) => (prev + 1) % words.length);
           setIsDeleting(false);
-        }, 100);
+        }, 200);
       } else {
         timeout = setTimeout(() => {
           setDisplayedText((prev) => prev.slice(0, -1));
-        }, deletingSpeed);
+        }, getRandomSpeed(deletingSpeed));
       }
     } else {
       if (displayedText.length === currentWord.length) {
         timeout = setTimeout(() => {
           setIsWaiting(true);
-        }, 100);
+        }, 200);
       } else {
         timeout = setTimeout(() => {
           setDisplayedText(currentWord.slice(0, displayedText.length + 1));
-        }, typingSpeed);
+        }, getRandomSpeed(typingSpeed));
       }
     }
 
@@ -62,7 +68,7 @@ export function TypewriterText({
   return (
     <span className={className}>
       {displayedText}
-      <span className={`animate-pulse ${cursorClassName}`}>|</span>
+      <span className={`${styles.cursor} ${cursorClassName}`} />
     </span>
   );
 }
