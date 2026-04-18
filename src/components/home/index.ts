@@ -6,3 +6,4 @@
 export { HeroSection } from "./HeroSection";
 export { LatestBlogSection } from "./LatestBlogSection";
 export { ContactSection } from "./ContactSection";
+export { TypewriterText } from "./TypewriterText";

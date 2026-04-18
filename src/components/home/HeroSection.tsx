@@ -8,6 +8,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { TypewriterText } from "./TypewriterText";
+
+const talents = [
+  "Full-Stack Developer",
+  "DevOps Engineer",
+  "IT Infrastructure Engineer",
+  "Systems/Network Engineer",
+];
 
 export function HeroSection({ blurDataURL }: { blurDataURL?: string } = {}) {
   return (
@@ -19,7 +27,13 @@ export function HeroSection({ blurDataURL }: { blurDataURL?: string } = {}) {
         </h1>
 
         <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold">
-          Full-Stack Coder & IT Engineer
+          <TypewriterText
+            words={talents}
+            typingSpeed={50}
+            deletingSpeed={30}
+            delayBetweenWords={2000}
+            cursorClassName="ml-1"
+          />
         </h2>
 
         <p className="text-base sm:text-lg text-muted-foreground">
