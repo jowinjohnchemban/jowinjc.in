@@ -12,6 +12,16 @@ interface TypewriterTextProps {
   delayBetweenWords?: number;
 }
 
+// Shuffle algorithm for randomizing array
+function shuffleArray<T>(array: T[]): T[] {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 export function TypewriterText({
   words,
   className = '',
@@ -24,6 +34,7 @@ export function TypewriterText({
   const [wordIndex, setWordIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isWaiting, setIsWaiting] = useState(false);
+  const [shuffledWords] = useState(() => shuffleArray(words));
 
   // Random speed variation for more realistic typing
   const getRandomSpeed = (baseSpeed: number) => {
@@ -31,7 +42,9 @@ export function TypewriterText({
   };
 
   useEffect(() => {
-    const currentWord = words[wordIndex];
+    if (shuffledWords.length === 0) return;
+
+    const currentWord = shuffledWords[wordIndex];
     let timeout: NodeJS.Timeout;
 
     if (isWaiting) {
@@ -42,7 +55,9 @@ export function TypewriterText({
     } else if (isDeleting) {
       if (displayedText.length === 0) {
         timeout = setTimeout(() => {
-          setWordIndex((prev) => (prev + 1) % words.length);
+          // Pick random next word
+          const randomIndex = Math.floor(Math.random() * shuffledWords.length);
+          setWordIndex(randomIndex);
           setIsDeleting(false);
         }, 200);
       } else {
@@ -63,7 +78,7 @@ export function TypewriterText({
     }
 
     return () => clearTimeout(timeout);
-  }, [displayedText, wordIndex, isDeleting, isWaiting, words, typingSpeed, deletingSpeed, delayBetweenWords]);
+  }, [displayedText, wordIndex, isDeleting, isWaiting, shuffledWords, typingSpeed, deletingSpeed, delayBetweenWords]);
 
   return (
     <span className={className}>
