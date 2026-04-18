@@ -54,16 +54,9 @@ const nextConfig: NextConfig = {
 
     // Only apply cache headers in production
     if (process.env.NODE_ENV === "production") {
+      // Let Next.js handle /_next/static caching automatically
+      // Custom headers there can interfere with Next.js's built-in strategy
       headers.push(
-        {
-          source: "/_next/static/:path*",
-          headers: [
-            {
-              key: "Cache-Control",
-              value: "public, max-age=31536000, immutable",
-            },
-          ],
-        },
         {
           source: "/images/:path*",
           headers: [
