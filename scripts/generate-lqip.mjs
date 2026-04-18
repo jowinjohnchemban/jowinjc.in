@@ -79,12 +79,6 @@ async function generateLQIP() {
     const config = loadConfig();
     const { images, output } = config;
 
-    // Validate configuration
-    if (!images || !Array.isArray(images) || images.length === 0) {
-      console.warn('⚠️  No images configured in .lqiprc.json');
-      return;
-    }
-
     // Create output directories
     const generatedDir = join(__dirname, '../', output.generatedImagesDir);
     const dataFilePath = join(__dirname, '../', output.dataFile);
@@ -96,12 +90,16 @@ async function generateLQIP() {
     // Process all images
     const allLQIPData = {};
 
-    for (const imageConfig of images) {
-      const imageData = await processImage(imageConfig, generatedDir);
-      Object.assign(allLQIPData, imageData);
+    if (!images || !Array.isArray(images) || images.length === 0) {
+      console.warn('⚠️  No images configured in .lqiprc.json');
+    } else {
+      for (const imageConfig of images) {
+        const imageData = await processImage(imageConfig, generatedDir);
+        Object.assign(allLQIPData, imageData);
+      }
     }
 
-    // Write combined LQIP data file
+    // Write combined LQIP data file (always, even if empty)
     writeFileSync(dataFilePath, JSON.stringify(allLQIPData, null, 2));
 
     console.log(`\n✅ LQIP generation completed successfully!`);
