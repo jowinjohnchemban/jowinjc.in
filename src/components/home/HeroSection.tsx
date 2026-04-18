@@ -32,7 +32,6 @@ export function HeroSection({ blurDataURL }: { blurDataURL?: string } = {}) {
             typingSpeed={50}
             deletingSpeed={30}
             delayBetweenWords={2000}
-            cursorClassName="ml-1"
           />
         </h2>
 

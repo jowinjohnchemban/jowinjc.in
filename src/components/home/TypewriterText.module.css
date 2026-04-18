@@ -9,10 +9,13 @@
 
 .cursor {
   display: inline-block;
-  width: 2px;
-  height: 1em;
+  width: 1.5px;
+  height: 1.2em;
   background-color: currentColor;
-  margin-left: 4px;
-  vertical-align: text-bottom;
+  margin-left: 2px;
+  margin-right: 2px;
+  vertical-align: -0.15em;
   animation: blink 1s infinite;
+  line-height: 1;
 }
+
