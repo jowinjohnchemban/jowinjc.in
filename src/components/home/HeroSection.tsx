@@ -25,7 +25,7 @@ export function HeroSection({ blurDataURL }: { blurDataURL?: string } = {}) {
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
           Hi, I&apos;m <span className="text-primary">Jowin</span>
         </h1>
-
+  {/* Typewriter effect for talents/roles 
         <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold">
           <TypewriterText
             words={talents}
@@ -33,7 +33,7 @@ export function HeroSection({ blurDataURL }: { blurDataURL?: string } = {}) {
             deletingSpeed={30}
             delayBetweenWords={2000}
           />
-        </h2>
+        </h2> */}
 
         <p className="text-base sm:text-lg text-muted-foreground">
           Creating solutions, designing systems & crafting experiences that inspire ⚡
