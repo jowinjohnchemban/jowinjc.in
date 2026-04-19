@@ -12,7 +12,6 @@ export const metadata: Metadata = {
 
 const socialMediaMap: Record<string, string> = {
   github: socialLinks.github,
-  twitter: socialLinks.twitter,
   linkedin: socialLinks.linkedin,
   youtube: socialLinks.youtube,
   instagram: socialLinks.instagram,

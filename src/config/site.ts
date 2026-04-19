@@ -22,7 +22,6 @@ export const siteConfig = {
  */
 export const socialLinks = {
   github: process.env.NEXT_PUBLIC_GITHUB_URL || "",
-  twitter: process.env.NEXT_PUBLIC_TWITTER_URL || "",
   linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL || "",
   youtube: process.env.NEXT_PUBLIC_YOUTUBE_URL || "",
   instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "",
@@ -37,7 +36,6 @@ export const seoConfig = {
   dmcaVerification: process.env.NEXT_PUBLIC_DMCA_VERIFICATION || "",
   gtmId: process.env.NEXT_PUBLIC_GTM_ID || "",
   ahrefsKey: process.env.NEXT_PUBLIC_AHREFS_KEY || "",
-  twitterHandle: process.env.NEXT_PUBLIC_TWITTER_HANDLE || "",
 } as const;
 
 /**
@@ -74,7 +72,6 @@ export const features = {
   // Check if social links are enabled (not empty)
   social: {
     github: !!socialLinks.github,
-    twitter: !!socialLinks.twitter,
     linkedin: !!socialLinks.linkedin,
     youtube: !!socialLinks.youtube,
     instagram: !!socialLinks.instagram,

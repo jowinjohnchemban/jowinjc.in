@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ContactForm } from "@/components/ContactForm";
 import Link from "next/link";
-import { Github, Linkedin, Twitter, Youtube, Instagram, Facebook } from "lucide-react";
+import { FacebookIcon, GithubIcon, InstagramIcon, LinkedinIcon, YoutubeIcon } from "@/components/icons";
 import { features, siteConfig } from "@/config/site";
 import { generatePageSEO } from "@/config/seo";
 
@@ -14,32 +14,27 @@ export const dynamic = 'force-static';
 const socialPlatforms = [
   {
     name: "GitHub",
-    icon: Github,
+    icon: GithubIcon,
     enabled: features.social.github,
   },
   {
-    name: "Twitter",
-    icon: Twitter,
-    enabled: features.social.twitter,
-  },
-  {
     name: "LinkedIn",
-    icon: Linkedin,
+    icon: LinkedinIcon,
     enabled: features.social.linkedin,
   },
   {
     name: "YouTube",
-    icon: Youtube,
+    icon: YoutubeIcon,
     enabled: features.social.youtube,
   },
   {
     name: "Instagram",
-    icon: Instagram,
+    icon: InstagramIcon,
     enabled: features.social.instagram,
   },
   {
     name: "Facebook",
-    icon: Facebook,
+    icon: FacebookIcon,
     enabled: features.social.facebook,
   },
 ];

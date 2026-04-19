@@ -61,12 +61,10 @@ const envSchema = z.object({
 
   // Social Links (empty strings are treated as undefined)
   NEXT_PUBLIC_GITHUB_URL: z.string().url().or(z.literal('')).transform(val => val === '' ? undefined : val).optional(),
-  NEXT_PUBLIC_TWITTER_URL: z.string().url().or(z.literal('')).transform(val => val === '' ? undefined : val).optional(),
   NEXT_PUBLIC_LINKEDIN_URL: z.string().url().or(z.literal('')).transform(val => val === '' ? undefined : val).optional(),
   NEXT_PUBLIC_YOUTUBE_URL: z.string().url().or(z.literal('')).transform(val => val === '' ? undefined : val).optional(),
   NEXT_PUBLIC_INSTAGRAM_URL: z.string().url().or(z.literal('')).transform(val => val === '' ? undefined : val).optional(),
   NEXT_PUBLIC_FACEBOOK_URL: z.string().url().or(z.literal('')).transform(val => val === '' ? undefined : val).optional(),
-  NEXT_PUBLIC_TWITTER_HANDLE: z.string().transform(val => val === '' ? undefined : val).optional(),
 
   // API Security
   HASHNODE_REVALIDATE_WEBHOOK_SECRET: z.string().transform(val => val === '' ? undefined : val).optional().describe('Secret for Hashnode webhook revalidation'),
@@ -127,7 +125,6 @@ export function isFeatureEnabled(
     case 'social':
       return !!(
         env.NEXT_PUBLIC_GITHUB_URL ||
-        env.NEXT_PUBLIC_TWITTER_URL ||
         env.NEXT_PUBLIC_LINKEDIN_URL
       );
     case 'blog':
@@ -151,7 +148,6 @@ export const publicEnv = {
   NEXT_PUBLIC_GTM_ID: env.NEXT_PUBLIC_GTM_ID,
   NEXT_PUBLIC_AHREFS_KEY: env.NEXT_PUBLIC_AHREFS_KEY,
   NEXT_PUBLIC_GITHUB_URL: env.NEXT_PUBLIC_GITHUB_URL,
-  NEXT_PUBLIC_TWITTER_URL: env.NEXT_PUBLIC_TWITTER_URL,
   NEXT_PUBLIC_LINKEDIN_URL: env.NEXT_PUBLIC_LINKEDIN_URL,
   NEXT_PUBLIC_YOUTUBE_URL: env.NEXT_PUBLIC_YOUTUBE_URL,
   NEXT_PUBLIC_INSTAGRAM_URL: env.NEXT_PUBLIC_INSTAGRAM_URL,

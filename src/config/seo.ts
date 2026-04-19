@@ -1,11 +1,11 @@
 /**
  * SEO Configuration Module
  * @module config/seo
- * @description Centralized SEO management for static pages with metadata, Open Graph, Twitter Cards, and JSON-LD structured data
+ * @description Centralized SEO management for static pages with metadata, Open Graph, and JSON-LD structured data
  */
 
 import type { Metadata } from "next";
-import { siteConfig, seoConfig, socialLinks } from "./site";
+import { seoConfig, siteConfig, socialLinks } from "./site";
 
 // ============================================================================
 // TYPES
@@ -125,8 +125,6 @@ export function generatePageSEO(
     // Don't default to homepage - return undefined canonical to let Next.js handle it
     url = '';
   }
-  
-  const twitterCreator = seoConfig.twitterHandle || undefined;
 
   // Merge: local > config > defaults (local has highest priority)
   const title = localMetadata?.title ?? pageConfig?.title ?? siteConfig.name;
@@ -157,13 +155,6 @@ export function generatePageSEO(
       description: ogDescription,
       images: ogImages,
       ...localMetadata?.openGraph,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: ogTitle,
-      description: ogDescription,
-      ...(twitterCreator && { creator: twitterCreator }),
-      images: ogImages.map((img) => typeof img === 'string' ? img : img.url),
     },
     ...(url && {
       alternates: {
@@ -220,12 +211,6 @@ export const defaultSEO: Metadata = {
     description: siteConfig.description,
     siteName: siteConfig.name,
   },
-  twitter: {
-    card: "summary_large_image",
-    title: siteConfig.name,
-    description: siteConfig.description,
-    ...(seoConfig.twitterHandle && { creator: seoConfig.twitterHandle }),
-  },
   alternates: {
     canonical: siteConfig.url,
   },
@@ -268,7 +253,6 @@ export const personStructuredData = {
   url: siteConfig.url,
   sameAs: [
     socialLinks.github,
-    socialLinks.twitter,
     socialLinks.linkedin,
     socialLinks.instagram,
     socialLinks.youtube,
@@ -417,7 +401,7 @@ export function generateBreadcrumbStructuredData(items: Array<{ name: string; ur
  * - Always provide meaningful descriptions (120-160 characters)
  * - Include relevant keywords without stuffing
  * - Create Open Graph images (1200x630px) for better social sharing
- * - Test with: Facebook Sharing Debugger, Twitter Card Validator
+ * - Test with: Facebook Sharing Debugger
  * 
  * NOTES:
  * - Blog posts should use local metadata (fetched from Hashnode)

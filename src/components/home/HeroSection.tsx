@@ -51,7 +51,7 @@ export function HeroSection({ blurDataURL }: { blurDataURL?: string } = {}) {
             asChild
             className="w-full sm:w-auto"
           >
-            <Link href="/connect">Let's Connect</Link>
+            <Link href="/connect">Let&apos;s Connect</Link>
           </Button>
         </div>
       </div>
