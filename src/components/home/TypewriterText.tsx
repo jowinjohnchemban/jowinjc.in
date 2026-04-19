@@ -55,8 +55,11 @@ export function TypewriterText({
     } else if (isDeleting) {
       if (displayedText.length === 0) {
         timeout = setTimeout(() => {
-          // Pick random next word
-          const randomIndex = Math.floor(Math.random() * shuffledWords.length);
+          // Pick random next word, ensuring it's different from current
+          let randomIndex = Math.floor(Math.random() * shuffledWords.length);
+          while (randomIndex === wordIndex && shuffledWords.length > 1) {
+            randomIndex = Math.floor(Math.random() * shuffledWords.length);
+          }
           setWordIndex(randomIndex);
           setIsDeleting(false);
         }, 200);
