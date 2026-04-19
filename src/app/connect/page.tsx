@@ -80,7 +80,7 @@ export default function ConnectPage() {
               Let&apos;s <span className="text-primary">Connect</span>
             </h1>
             <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-              Got ideas or just wanna connect? Drop a message! 💬
+              Got ideas or just wanna connect? Drop a message!
             </p>
           </div>
 

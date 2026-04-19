@@ -42,7 +42,7 @@ export function HeroSection({ blurDataURL }: { blurDataURL?: string } = {}) {
 
         <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-4">
           <Button size="lg" asChild className="w-full sm:w-auto">
-            <Link href="/blog">Read Blog 📝</Link>
+            <Link href="/blog">Read Blog</Link>
           </Button>
 
           <Button
@@ -51,7 +51,7 @@ export function HeroSection({ blurDataURL }: { blurDataURL?: string } = {}) {
             asChild
             className="w-full sm:w-auto"
           >
-            <Link href="/connect">Let&apos;s Connect 💬</Link>
+            <Link href="/connect">Let's Connect</Link>
           </Button>
         </div>
       </div>

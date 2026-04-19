@@ -93,7 +93,7 @@ function getParsedEnv(): z.infer<typeof envSchema> {
         .filter((issue) => issue.code === 'invalid_type')
         .map((issue) => issue.path.join('.'));
 
-      console.error('❌ Environment Validation Failed');
+      console.error('Environment Validation Failed');
       console.error('Missing or invalid variables:', missingVars);
       console.error('\nAdd these to your .env.local file:');
       missingVars.forEach((varName) => {
